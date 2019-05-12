@@ -10,10 +10,16 @@ namespace SA
     // Vertical speed of player.
     public float vertical;
 
-    // Name of animation currently playing.
-    public string animationName;
     // Should animation play?
     public bool playAnimation;
+
+    // Names of oh attack animations.
+    public string[] oh_attacks;
+    // Names of th attack animations.
+    public string[] th_attacks;
+
+    // Is the player in to handed mode.
+    public bool twoHanded;
 
     Animator animator;
 
@@ -26,10 +32,24 @@ namespace SA
     // Update is called once per frame
     void Update()
     {
+      animator.SetBool("two_handed", twoHanded);
+      
       if (playAnimation)
       {
+        string targetAnimation;
+
+        if (!twoHanded)
+        {
+          int r = Random.Range(0, oh_attacks.Length);
+          targetAnimation = oh_attacks[r];
+        }
+        else
+        {
+          int r = Random.Range(0, th_attacks.Length);
+          targetAnimation = th_attacks[r];
+        }
         vertical = 0;
-        animator.CrossFade(animationName, 0.2f);
+        animator.CrossFade(targetAnimation, 0.2f);
         playAnimation = false;
       }
       animator.SetFloat("vertical", vertical);

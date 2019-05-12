@@ -139,6 +139,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertical: 0
+  playAnimation: 0
+  oh_attacks:
+  - oh_attack_1
+  - oh_attack_2
+  - oh_attack_3
+  th_attacks:
+  - th_attack_1
+  - th_attack_2
+  twoHanded: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
