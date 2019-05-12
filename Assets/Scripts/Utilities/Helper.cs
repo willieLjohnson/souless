@@ -20,6 +20,8 @@ namespace SA
 
     // Is the player in to handed mode.
     public bool twoHanded;
+    // Bool to toggle root motion on player.
+    public bool enableRootMotion;
 
     Animator animator;
 
@@ -32,8 +34,13 @@ namespace SA
     // Update is called once per frame
     void Update()
     {
+      enableRootMotion = !animator.GetBool("can_move");
+      animator.applyRootMotion = enableRootMotion;
+
+      if (enableRootMotion) return;
+
       animator.SetBool("two_handed", twoHanded);
-      
+
       if (playAnimation)
       {
         string targetAnimation;
@@ -50,6 +57,8 @@ namespace SA
         }
         vertical = 0;
         animator.CrossFade(targetAnimation, 0.2f);
+        // animator.SetBool("can_move", false);
+        enableRootMotion = true;
         playAnimation = false;
       }
       animator.SetFloat("vertical", vertical);
