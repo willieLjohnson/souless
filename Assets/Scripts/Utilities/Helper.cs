@@ -66,13 +66,21 @@ namespace SA
         {
           int r = Random.Range(0, oh_attacks.Length);
           targetAnimation = oh_attacks[r];
+
+          // if (vertical > 0.5f)
+          //   targetAnimation = "oh_attack_3";
         }
         else
         {
           int r = Random.Range(0, th_attacks.Length);
           targetAnimation = th_attacks[r];
         }
+
+        if (vertical > 0.5f)
+          targetAnimation = "oh_attack_3";
+
         vertical = 0;
+
         animator.CrossFade(targetAnimation, 0.2f);
         // animator.SetBool("can_move", false);
         enableRootMotion = true;
