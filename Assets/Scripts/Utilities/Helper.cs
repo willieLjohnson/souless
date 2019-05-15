@@ -6,9 +6,12 @@ namespace SA
 {
   public class Helper : MonoBehaviour
   {
-    [Range(0, 1)]
+    [Range(-1, 1)]
     // Vertical speed of player.
     public float vertical;
+    [Range(-1, 1)]
+    // Horizontal speed of player.
+    public float horizontal;
 
     // Should animation play?
     public bool playAnimation;
@@ -24,6 +27,7 @@ namespace SA
     public bool enableRootMotion;
     public bool useItem;
     public bool interacting;
+    public bool lockon;
 
     Animator animator;
 
@@ -42,7 +46,20 @@ namespace SA
 
       interacting = animator.GetBool("interacting");
 
+      // Lock on
+
+      if (!lockon)
+      {
+        horizontal = 0;
+        vertical = Mathf.Clamp01(vertical);
+      }
+      animator.SetBool("lockon", lockon);
+
+      // Stop on rootMotion
+
       if (enableRootMotion) return;
+
+      // Interacting
 
       if (useItem)
       {
@@ -50,14 +67,16 @@ namespace SA
         useItem = false;
       }
 
+
       if (interacting)
       {
         playAnimation = false;
         vertical = Mathf.Clamp(vertical, 0, 0.5f);
       }
 
-      animator.SetBool("two_handed", twoHanded);
+      // Attacking 
 
+      animator.SetBool("two_handed", twoHanded);
       if (playAnimation)
       {
         string targetAnimation;
@@ -86,7 +105,11 @@ namespace SA
         enableRootMotion = true;
         playAnimation = false;
       }
+
+      // Moving
+
       animator.SetFloat("vertical", vertical);
+      animator.SetFloat("horizontal", horizontal);
 
     }
   }
