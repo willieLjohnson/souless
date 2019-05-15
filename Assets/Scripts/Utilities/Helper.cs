@@ -22,6 +22,8 @@ namespace SA
     public bool twoHanded;
     // Bool to toggle root motion on player.
     public bool enableRootMotion;
+    public bool useItem;
+    public bool interacting;
 
     Animator animator;
 
@@ -34,10 +36,25 @@ namespace SA
     // Update is called once per frame
     void Update()
     {
+
       enableRootMotion = !animator.GetBool("can_move");
       animator.applyRootMotion = enableRootMotion;
 
+      interacting = animator.GetBool("interacting");
+
       if (enableRootMotion) return;
+
+      if (useItem)
+      {
+        animator.Play("use_item");
+        useItem = false;
+      }
+
+      if (interacting)
+      {
+        playAnimation = false;
+        vertical = Mathf.Clamp(vertical, 0, 0.5f);
+      }
 
       animator.SetBool("two_handed", twoHanded);
 
@@ -62,6 +79,7 @@ namespace SA
         playAnimation = false;
       }
       animator.SetFloat("vertical", vertical);
+
     }
   }
 }
