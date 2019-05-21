@@ -32,6 +32,9 @@ namespace SA
     {
       SetupAnimator();
       rigidbody = GetComponent<Rigidbody>();
+      rigidbody.angularDrag = 999;
+      rigidbody.drag = 4;
+      rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     void SetupAnimator()
@@ -57,6 +60,8 @@ namespace SA
     public void FixedTick(float delta)
     {
       this.delta = delta;
+
+      rigidbody.drag = (moveAmount > 0) ? 0 : 4;
 
       float targetSpeed = moveSpeed;
       if (run)
