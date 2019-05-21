@@ -67,7 +67,14 @@ namespace SA
       if (run)
         targetSpeed = runSpeed;
 
-      rigidbody.velocity = moveDirection * targetSpeed;
+      rigidbody.velocity = moveDirection * (targetSpeed * moveAmount);
+
+      HandleMovementAnimations();
+    }
+
+    void HandleMovementAnimations()
+    {
+      animator.SetFloat("vertical", moveAmount, 0.4f, delta);
     }
   }
 }
