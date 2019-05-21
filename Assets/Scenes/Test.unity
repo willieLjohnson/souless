@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 321505086}
   - component: {fileID: 321505085}
   - component: {fileID: 321505087}
+  - component: {fileID: 321505088}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -233,6 +234,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c609156994ad45a42a7fac1c2c0736a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &321505088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321505083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378afcd8d0afc2e4398614e9dd30f42f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertical: 0
+  horizontal: 0
+  activeModel: {fileID: 0}
+  animator: {fileID: 0}
+  rigidbody: {fileID: 0}
+  delta: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2063464839}
+  - component: {fileID: 2063464840}
   m_Layer: 0
   m_Name: Camera Holder
   m_TagString: Untagged
@@ -700,3 +720,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2063464840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063464838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2dc1221dce8ad4b8849538fcad460b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockon: 0
+  followSpeed: 9
+  mouseSpeed: 2
+  target: {fileID: 0}
+  minAngle: -35
+  maxAngle: 35
+  lookAngle: 0
+  tiltAngle: 0

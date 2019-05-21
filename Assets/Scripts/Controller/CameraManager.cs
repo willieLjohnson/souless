@@ -7,7 +7,7 @@ namespace SA
   public class CameraManager : MonoBehaviour
   {
     public bool lockon;
-    publicfloat followSpeed = 9;
+    public float followSpeed = 9;
     public float mouseSpeed = 2;
 
     public Transform target;
@@ -19,10 +19,12 @@ namespace SA
     public float minAngle = -35f;
     public float maxAngle = 35f;
 
-    float smoothX;
     float smoothY;
-    float smoothXVelocity;
+    float smoothX;
+
     float smoothYVelocity;
+    float smoothXVelocity;
+
     public float lookAngle;
     public float tiltAngle;
 
@@ -30,14 +32,14 @@ namespace SA
     {
       this.target = target;
 
-      cameraTransform = CameraManager.main.transform;
+      cameraTransform = Camera.main.transform;
       pivot = cameraTransform.parent;
     }
 
     public void Tick(float delta)
     {
-      float horizontal = Input.GetAxis("Mouse X");
       float vertical = Input.GetAxis("Mouse Y");
+      float horizontal = Input.GetAxis("Mouse X");
 
       float targetSpeed = mouseSpeed;
 
@@ -56,14 +58,14 @@ namespace SA
     {
       if (turnSmoothing > 0)
       {
-        smoothX = Mathf.SmoothDamp(smoothX, vertical, ref smoothXVelocity, turnSmoothing);
-        smoothY = Mathf.SmoothDamp(smoothY, horizontal, ref smoothYVelocity, turnSmoothing);
+        smoothY = Mathf.SmoothDamp(smoothY, vertical, ref smoothYVelocity, turnSmoothing);
+        smoothX = Mathf.SmoothDamp(smoothX, horizontal, ref smoothXVelocity, turnSmoothing);
       }
 
       else
       {
-        smoothX = horizontal;
         smoothY = vertical;
+        smoothX = horizontal;
       }
 
       if (lockon)
@@ -75,7 +77,7 @@ namespace SA
       transform.rotation = Quaternion.Euler(0, lookAngle, 0);
 
       tiltAngle -= smoothY * targetSpeed;
-      tiltAngle = Mathf.Clam(tiltAngle, minAngle, maxAngle);
+      tiltAngle = Mathf.Clamp(tiltAngle, minAngle, maxAngle);
       pivot.localRotation = Quaternion.Euler(tiltAngle, 0, 0);
     }
 

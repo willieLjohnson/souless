@@ -45,8 +45,8 @@ namespace SA
 
     void UpdateStates()
     {
-      stateManager.horizontal = horizontal;
       stateManager.vertical = vertical;
+      stateManager.horizontal = horizontal;
 
       stateManager.Tick(delta);
     }
