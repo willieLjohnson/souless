@@ -11,7 +11,8 @@ public class InputHandler : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-
+    stateManager = GetComponent<StateManager>();
+    stateManager.Init();
   }
 
   // Update is called once per frame
@@ -24,5 +25,13 @@ public class InputHandler : MonoBehaviour
   {
     vertical = Input.GetAxis("Vertical");
     Horizontal = Input.GetAxis("Horizontal");
+  }
+
+  void UpdateStates()
+  {
+    stateManager.horizontal = horizontal;
+    stateManager.vertical = vertical;
+
+    stateManager.Tick(Time.deltaTime);
   }
 }
