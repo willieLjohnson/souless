@@ -2,36 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputHandler : MonoBehaviour
+namespace SA
 {
-  float vertical;
-  float horizontal;
-
-
-  // Start is called before the first frame update
-  void Start()
+  public class InputHandler : MonoBehaviour
   {
-    stateManager = GetComponent<StateManager>();
-    stateManager.Init();
+    float vertical;
+    float horizontal;
+
+    StateManager stateManager;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+      stateManager = GetComponent<StateManager>();
+      stateManager.Init();
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+      GetInput();
+    }
+
+    void GetInput()
+    {
+      vertical = Input.GetAxis("Vertical");
+      horizontal = Input.GetAxis("Horizontal");
+    }
+
+    void UpdateStates()
+    {
+      stateManager.horizontal = horizontal;
+      stateManager.vertical = vertical;
+
+      stateManager.Tick(Time.deltaTime);
+    }
   }
 
-  // Update is called once per frame
-  void FixedUpdate()
-  {
-    GetInput();
-  }
-
-  void GetInput()
-  {
-    vertical = Input.GetAxis("Vertical");
-    Horizontal = Input.GetAxis("Horizontal");
-  }
-
-  void UpdateStates()
-  {
-    stateManager.horizontal = horizontal;
-    stateManager.vertical = vertical;
-
-    stateManager.Tick(Time.deltaTime);
-  }
 }

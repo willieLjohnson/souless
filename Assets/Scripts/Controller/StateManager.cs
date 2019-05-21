@@ -19,7 +19,7 @@ namespace SA
     public void Init()
     {
       SetupAnimator();
-      rigidbody = GetComponent<rigidbody>();
+      rigidbody = GetComponent<Rigidbody>();
     }
 
     void SetupAnimator()
