@@ -16,6 +16,7 @@ namespace SA
     [Header("Stats")]
     public float moveSpeed = 2;
     public float runSpeed = 3.5f;
+    public float rotateSpeed = 3;
 
     [Header("States")]
     public bool run;
@@ -68,6 +69,16 @@ namespace SA
         targetSpeed = runSpeed;
 
       rigidbody.velocity = moveDirection * (targetSpeed * moveAmount);
+
+      Vector3 targetDirection = moveDirection;
+      targetDirection.y = 0;
+
+      if (targetDirection == Vector3.zero)
+        targetDirection = transform.forward;
+
+      Quaternion rotation = Quaternion.LookRotation(targetDirection);
+      Quaternion targetRotation = Quaternion.Slerp(transform.rotation, rotation, delta * moveAmount * rotateSpeed);
+      transform.rotation = targetRotation;
 
       HandleMovementAnimations();
     }
