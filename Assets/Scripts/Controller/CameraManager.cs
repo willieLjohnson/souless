@@ -12,8 +12,11 @@ namespace SA
 
     public Transform target;
 
-    Transform pivot;
-    Transform cameraTransform;
+
+    [HideInInspector]
+    public Transform pivot;
+    [HideInInspector]
+    public Transform cameraTransform;
 
     float turnSmoothing = .1f;
     public float minAngle = -35f;

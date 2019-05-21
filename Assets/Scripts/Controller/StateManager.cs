@@ -6,6 +6,8 @@ namespace SA
   {
     public float vertical;
     public float horizontal;
+    public float moveAmount;
+    public Vector3 moveDirection;
 
     public GameObject activeModel;
     [HideInInspector]
@@ -42,9 +44,11 @@ namespace SA
 
       animator.applyRootMotion = false;
     }
-    public void Tick(float delta)
+    public void FixedTick(float delta)
     {
       this.delta = delta;
+
+      rigidbody.velocity = moveDirection;
     }
   }
 }

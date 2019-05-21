@@ -29,6 +29,8 @@ namespace SA
     {
       delta = Time.fixedDeltaTime;
       GetInput();
+      UpdateStates();
+      stateManager.FixedTick(delta);
     }
 
     void Update()
@@ -48,7 +50,12 @@ namespace SA
       stateManager.vertical = vertical;
       stateManager.horizontal = horizontal;
 
-      stateManager.Tick(delta);
+      Vector3 moveVertical = stateManager.vertical * cameraManager.transform.forward;
+      Vector3 moveHorizontal = stateManager.horizontal * cameraManager.transform.right;
+      stateManager.moveDirection = (moveVertical + moveHorizontal).normalized;
+
+      float move = Mathf.Abs(vertical) + Mathf.Abs(horizontal);
+      stateManager.moveAmount = Mathf.Clamp01(move);
     }
   }
 
