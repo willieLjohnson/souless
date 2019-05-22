@@ -18,6 +18,18 @@ namespace SA
     {
       if (stateManager.canMove)
         return;
+
+      stateManager.rigidBody.drag = 0;
+      float multiplier = 1;
+      Vector3 delta = animator.deltaPosition;
+      delta.y = 0;
+      Vector3 velocity = (delta * multiplier) / stateManager.delta;
+      stateManager.rigidBody.velocity = velocity;
+    }
+
+    public void LateTick()
+    {
+
     }
   }
 

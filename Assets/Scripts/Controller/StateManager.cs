@@ -32,6 +32,10 @@ namespace SA
     [HideInInspector]
     public Rigidbody rigidBody;
     [HideInInspector]
+    public AnimatorHook animatorHook;
+
+
+    [HideInInspector]
     public float delta;
     [HideInInspector]
     public LayerMask ignoreLayers;
@@ -45,6 +49,9 @@ namespace SA
       rigidBody.angularDrag = 999;
       rigidBody.drag = 4;
       rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+      animatorHook = activeModel.AddComponent<AnimatorHook>();
+      animatorHook.Init(this);
 
       gameObject.layer = 8;
       ignoreLayers = ~(1 << 9);
