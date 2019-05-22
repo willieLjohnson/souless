@@ -80,6 +80,8 @@ namespace SA
 
       if (inAction)
       {
+        animator.applyRootMotion = true;
+
         _actionDelay += delta;
         if (_actionDelay > 0.3f)
         {
@@ -97,6 +99,7 @@ namespace SA
       if (!canMove)
         return;
 
+      animator.applyRootMotion = false;
 
       rigidBody.drag = (moveAmount > 0 || !onGround) ? 0 : 4;
 
@@ -152,7 +155,6 @@ namespace SA
       canMove = false;
       inAction = true;
       animator.CrossFade(targetAnimation, 0.2f);
-      rigidBody.velocity = Vector3.zero;
     }
     public void Tick(float delta)
     {
