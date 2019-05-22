@@ -11,6 +11,7 @@ namespace SA
     public float vertical;
     public float horizontal;
     public float moveAmount;
+    public bool fire1, r, q, z;
     public Vector3 moveDirection;
 
     [Header("Stats")]
@@ -23,11 +24,12 @@ namespace SA
     public bool onGround;
     public bool run;
     public bool lockOn;
+    public bool inAction;
 
     [HideInInspector]
     public Animator animator;
     [HideInInspector]
-    public Rigidbody rigidbody;
+    public Rigidbody rigidBody;
     [HideInInspector]
     public float delta;
     [HideInInspector]
@@ -37,10 +39,10 @@ namespace SA
     public void Init()
     {
       SetupAnimator();
-      rigidbody = GetComponent<Rigidbody>();
-      rigidbody.angularDrag = 999;
-      rigidbody.drag = 4;
-      rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+      rigidBody = GetComponent<Rigidbody>();
+      rigidBody.angularDrag = 999;
+      rigidBody.drag = 4;
+      rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
       gameObject.layer = 8;
       ignoreLayers = ~(1 << 9);
@@ -72,14 +74,18 @@ namespace SA
     {
       this.delta = delta;
 
-      rigidbody.drag = (moveAmount > 0 || !onGround) ? 0 : 4;
+      DetectAction();
+
+      inAction = !animator.GetBool("can_move");
+
+      rigidBody.drag = (moveAmount > 0 || !onGround) ? 0 : 4;
 
       float targetSpeed = moveSpeed;
       if (run)
         targetSpeed = runSpeed;
 
       if (onGround)
-        rigidbody.velocity = moveDirection * (targetSpeed * moveAmount);
+        rigidBody.velocity = moveDirection * (targetSpeed * moveAmount);
 
       if (run)
         lockOn = false;
@@ -103,6 +109,29 @@ namespace SA
       HandleMovementAnimations();
     }
 
+    public void DetectAction()
+    {
+      if (!fire1 && !r && !q && !z)
+        return;
+
+      string targetAnimation = null;
+
+      if (fire1)
+        targetAnimation = "oh_attack_1";
+      if (r)
+        targetAnimation = "oh_attack_2";
+      if (q)
+        targetAnimation = "oh_attack_3";
+      if (z)
+        targetAnimation = "th_attack_1";
+
+      if (!string.IsNullOrEmpty(targetAnimation))
+        return;
+
+      inAction = true;
+      animator.CrossFade(targetAnimation, 0.4f);
+
+    }
     public void Tick(float delta)
     {
       this.delta = delta;
