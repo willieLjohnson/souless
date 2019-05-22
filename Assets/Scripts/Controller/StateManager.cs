@@ -107,7 +107,7 @@ namespace SA
 
       Vector3 origin = transform.position + (Vector3.up * toGround);
       Vector3 direction = -Vector3.up;
-      float distance = toGround - 0.3f;
+      float distance = toGround + 0.3f;
       RaycastHit hit;
       if (Physics.Raycast(origin, direction, out hit, distance, ignoreLayers))
       {
