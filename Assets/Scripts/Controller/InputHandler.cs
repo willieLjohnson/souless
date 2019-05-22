@@ -16,7 +16,7 @@ namespace SA
     bool fire1Input;
     bool rInput;
     bool qInput;
-    float zInput;
+    bool zInput;
 
     StateManager stateManager;
     CameraManager cameraManager;
@@ -54,8 +54,10 @@ namespace SA
       vertical = Input.GetAxis("Vertical");
       horizontal = Input.GetAxis("Horizontal");
       runInput = Input.GetButton("Run");
+      fire1Input = Input.GetButton("Fire1");
       rInput = Input.GetButton("R");
       qInput = Input.GetButton("Q");
+      zInput = Input.GetButton("Z");
     }
 
     void UpdateStates()
@@ -78,6 +80,11 @@ namespace SA
       {
         stateManager.run = false;
       }
+
+      stateManager.fire1 = fire1Input;
+      stateManager.r = rInput;
+      stateManager.q = qInput;
+      stateManager.z = zInput;
     }
   }
 

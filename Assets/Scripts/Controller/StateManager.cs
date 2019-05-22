@@ -74,9 +74,15 @@ namespace SA
     {
       this.delta = delta;
 
+      inAction = !animator.GetBool("can_move");
+
+      if (inAction)
+        return;
+
       DetectAction();
 
-      inAction = !animator.GetBool("can_move");
+      if (inAction)
+        return;
 
       rigidBody.drag = (moveAmount > 0 || !onGround) ? 0 : 4;
 
@@ -125,7 +131,7 @@ namespace SA
       if (z)
         targetAnimation = "th_attack_1";
 
-      if (!string.IsNullOrEmpty(targetAnimation))
+      if (string.IsNullOrEmpty(targetAnimation))
         return;
 
       inAction = true;
