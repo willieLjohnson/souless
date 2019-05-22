@@ -14,9 +14,9 @@ namespace SA
     public Vector3 moveDirection;
 
     [Header("Stats")]
-    public float moveSpeed = 2;
-    public float runSpeed = 3.5f;
-    public float rotateSpeed = 3;
+    public float moveSpeed = 3.5f;
+    public float runSpeed = 5.5f;
+    public float rotateSpeed = 9;
     public float toGround = 0.5f;
 
     [Header("States")]
