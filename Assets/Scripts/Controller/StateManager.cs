@@ -25,6 +25,7 @@ namespace SA
     public bool run;
     public bool lockOn;
     public bool inAction;
+    public bool canMove;
 
     [HideInInspector]
     public Animator animator;
@@ -35,6 +36,7 @@ namespace SA
     [HideInInspector]
     public LayerMask ignoreLayers;
 
+    float _actionDelay;
 
     public void Init()
     {
@@ -74,15 +76,27 @@ namespace SA
     {
       this.delta = delta;
 
-      inAction = !animator.GetBool("can_move");
-
-      if (inAction)
-        return;
-
       DetectAction();
 
       if (inAction)
+      {
+        _actionDelay += delta;
+        if (_actionDelay > 0.3f)
+        {
+          inAction = false;
+          _actionDelay = 0;
+        }
+        else
+        {
+          return;
+        }
+      }
+
+      canMove = animator.GetBool("can_move");
+
+      if (!canMove)
         return;
+
 
       rigidBody.drag = (moveAmount > 0 || !onGround) ? 0 : 4;
 
@@ -95,8 +109,6 @@ namespace SA
 
       if (run)
         lockOn = false;
-
-
 
       if (!lockOn)
       {
@@ -117,6 +129,9 @@ namespace SA
 
     public void DetectAction()
     {
+      if (!canMove)
+        return;
+
       if (!fire1 && !r && !q && !z)
         return;
 
@@ -134,9 +149,10 @@ namespace SA
       if (string.IsNullOrEmpty(targetAnimation))
         return;
 
+      canMove = false;
       inAction = true;
-      animator.CrossFade(targetAnimation, 0.4f);
-
+      animator.CrossFade(targetAnimation, 0.2f);
+      rigidBody.velocity = Vector3.zero;
     }
     public void Tick(float delta)
     {
