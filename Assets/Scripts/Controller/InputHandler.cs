@@ -8,6 +8,7 @@ namespace SA
   {
     float vertical;
     float horizontal;
+    bool runInput;
 
     StateManager stateManager;
     CameraManager cameraManager;
@@ -44,6 +45,7 @@ namespace SA
     {
       vertical = Input.GetAxis("Vertical");
       horizontal = Input.GetAxis("Horizontal");
+      runInput = Input.GetButton("RunInput");
     }
 
     void UpdateStates()
@@ -57,6 +59,15 @@ namespace SA
 
       float move = Mathf.Abs(vertical) + Mathf.Abs(horizontal);
       stateManager.moveAmount = Mathf.Clamp01(move);
+
+      if (runInput)
+      {
+        stateManager.run = (stateManager.moveAmount > 0);
+      }
+      else
+      {
+        stateManager.run = false;
+      }
     }
   }
 

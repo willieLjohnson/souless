@@ -22,6 +22,7 @@ namespace SA
     [Header("States")]
     public bool onGround;
     public bool run;
+    public bool lockOn;
 
     [HideInInspector]
     public Animator animator;
@@ -80,15 +81,24 @@ namespace SA
       if (onGround)
         rigidbody.velocity = moveDirection * (targetSpeed * moveAmount);
 
-      Vector3 targetDirection = moveDirection;
-      targetDirection.y = 0;
+      if (run)
+        lockOn = false;
 
-      if (targetDirection == Vector3.zero)
-        targetDirection = transform.forward;
 
-      Quaternion rotation = Quaternion.LookRotation(targetDirection);
-      Quaternion targetRotation = Quaternion.Slerp(transform.rotation, rotation, delta * moveAmount * rotateSpeed);
-      transform.rotation = targetRotation;
+
+      if (!lockOn)
+      {
+        Vector3 targetDirection = moveDirection;
+        targetDirection.y = 0;
+
+        if (targetDirection == Vector3.zero)
+          targetDirection = transform.forward;
+
+        Quaternion rotation = Quaternion.LookRotation(targetDirection);
+        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, rotation, delta * moveAmount * rotateSpeed);
+        transform.rotation = targetRotation;
+
+      }
 
       HandleMovementAnimations();
     }
@@ -102,6 +112,7 @@ namespace SA
 
     void HandleMovementAnimations()
     {
+      animator.SetBool("run", run);
       animator.SetFloat("vertical", moveAmount, 0.4f, delta);
     }
 
