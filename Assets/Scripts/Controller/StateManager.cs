@@ -17,8 +17,10 @@ namespace SA
     public float moveSpeed = 2;
     public float runSpeed = 3.5f;
     public float rotateSpeed = 3;
+    public float toGround = 0.5f;
 
     [Header("States")]
+    public bool onGround;
     public bool run;
 
     [HideInInspector]
@@ -27,6 +29,8 @@ namespace SA
     public Rigidbody rigidbody;
     [HideInInspector]
     public float delta;
+    [HideInInspector]
+    public LayerMask ignoreLayers;
 
 
     public void Init()
@@ -36,6 +40,9 @@ namespace SA
       rigidbody.angularDrag = 999;
       rigidbody.drag = 4;
       rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+      gameObject.layer = 8;
+      ignoreLayers = ~(1 << 9);
     }
 
     void SetupAnimator()
@@ -83,9 +90,33 @@ namespace SA
       HandleMovementAnimations();
     }
 
+    public void Tick(float delta)
+    {
+      this.delta = delta;
+      onGround = OnGround();
+    }
+
     void HandleMovementAnimations()
     {
       animator.SetFloat("vertical", moveAmount, 0.4f, delta);
+    }
+
+    public bool OnGround()
+    {
+      bool rayHit = false;
+
+      Vector3 origin = transform.position + (Vector3.up * toGround);
+      Vector3 direction = -Vector3.up;
+      float distance = toGround - 0.3f;
+      RaycastHit hit;
+      if (Physics.Raycast(origin, direction, out hit, distance, ignoreLayers))
+      {
+        rayHit = true;
+        Vector3 targetPosition = hit.point;
+        transform.position = targetPosition;
+      }
+
+      return rayHit;
     }
   }
 }
