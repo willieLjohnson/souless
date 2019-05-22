@@ -26,11 +26,6 @@ namespace SA
       Vector3 velocity = (delta * multiplier) / stateManager.delta;
       stateManager.rigidBody.velocity = velocity;
     }
-
-    public void LateTick()
-    {
-
-    }
   }
 
 }
