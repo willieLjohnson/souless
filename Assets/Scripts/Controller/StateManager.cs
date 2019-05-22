@@ -69,13 +69,14 @@ namespace SA
     {
       this.delta = delta;
 
-      rigidbody.drag = (moveAmount > 0) ? 0 : 4;
+      rigidbody.drag = (moveAmount > 0 || !onGround) ? 0 : 4;
 
       float targetSpeed = moveSpeed;
       if (run)
         targetSpeed = runSpeed;
 
-      rigidbody.velocity = moveDirection * (targetSpeed * moveAmount);
+      if (onGround)
+        rigidbody.velocity = moveDirection * (targetSpeed * moveAmount);
 
       Vector3 targetDirection = moveDirection;
       targetDirection.y = 0;
