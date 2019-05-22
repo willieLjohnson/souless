@@ -43,6 +43,8 @@ namespace SA
 
       gameObject.layer = 8;
       ignoreLayers = ~(1 << 9);
+
+      animator.SetBool("onGround", true);
     }
 
     void SetupAnimator()
@@ -95,6 +97,7 @@ namespace SA
     {
       this.delta = delta;
       onGround = OnGround();
+      animator.SetBool("onGround", onGround);
     }
 
     void HandleMovementAnimations()
