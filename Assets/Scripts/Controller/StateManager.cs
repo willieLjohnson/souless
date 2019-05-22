@@ -27,6 +27,8 @@ namespace SA
     public bool inAction;
     public bool canMove;
 
+    public bool isTwoHanded;
+
     [HideInInspector]
     public Animator animator;
     [HideInInspector]
@@ -192,6 +194,11 @@ namespace SA
       }
 
       return rayHit;
+    }
+
+    public void HandleTwoHanded()
+    {
+      animator.SetBool("two_handed", isTwoHanded);
     }
   }
 }

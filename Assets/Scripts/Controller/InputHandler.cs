@@ -58,6 +58,9 @@ namespace SA
       rInput = Input.GetButton("R");
       qInput = Input.GetButton("Q");
       zInput = Input.GetButton("Z");
+      aInput = Input.GetButton("A");
+      xInput = Input.GetButton("X");
+      yInput = Input.GetButtonUp("Y");
     }
 
     void UpdateStates()
@@ -85,6 +88,12 @@ namespace SA
       stateManager.r = rInput;
       stateManager.q = qInput;
       stateManager.z = zInput;
+
+      if (yInput)
+      {
+        stateManager.isTwoHanded = !stateManager.isTwoHanded;
+        stateManager.HandleTwoHanded();
+      }
     }
   }
 
