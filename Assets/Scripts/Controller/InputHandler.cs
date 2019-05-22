@@ -9,6 +9,14 @@ namespace SA
     float vertical;
     float horizontal;
     bool runInput;
+    bool aInput;
+    bool xInput;
+    bool yInput;
+
+    bool fire1Input;
+    bool rInput;
+    bool qInput;
+    float zInput;
 
     StateManager stateManager;
     CameraManager cameraManager;
@@ -45,7 +53,9 @@ namespace SA
     {
       vertical = Input.GetAxis("Vertical");
       horizontal = Input.GetAxis("Horizontal");
-      runInput = Input.GetButton("RunInput");
+      runInput = Input.GetButton("Run");
+      rInput = Input.GetButton("R");
+      qInput = Input.GetButton("Q");
     }
 
     void UpdateStates()
