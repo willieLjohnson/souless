@@ -34,6 +34,12 @@ namespace SA
       cameraManager.Tick(delta);
     }
 
+    void Update()
+    {
+      delta = Time.deltaTime;
+      stateManager.Tick(delta);
+    }
+
     void GetInput()
     {
       vertical = Input.GetAxis("Vertical");

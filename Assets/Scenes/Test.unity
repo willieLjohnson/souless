@@ -254,10 +254,15 @@ MonoBehaviour:
   moveSpeed: 2
   runSpeed: 3.5
   rotateSpeed: 3
+  toGround: 0.5
+  onGround: 0
   run: 0
   animator: {fileID: 0}
   rigidbody: {fileID: 0}
   delta: 0
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +487,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9919f741394894042aa24dc9cc700ce8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
