@@ -836,7 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockon: 0
-  followSpeed: 9
+  followSpeed: 3
   mouseSpeed: 2
   target: {fileID: 0}
   pivot: {fileID: 0}

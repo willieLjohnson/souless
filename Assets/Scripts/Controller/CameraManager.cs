@@ -7,7 +7,7 @@ namespace SA
   public class CameraManager : MonoBehaviour
   {
     public bool lockon;
-    public float followSpeed = 9;
+    public float followSpeed = 3;
     public float mouseSpeed = 2;
 
     public Transform target;
