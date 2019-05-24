@@ -103,6 +103,9 @@ namespace SA
         stateManager.lockOn = !stateManager.lockOn;
         if (!stateManager.lockOnTarget)
           stateManager.lockOn = false;
+
+        cameraManager.lockOnTarget = stateManager.lockOnTarget.transform;
+        cameraManager.lockOn = true;
       }
     }
   }

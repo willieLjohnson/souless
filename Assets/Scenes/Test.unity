@@ -557,7 +557,7 @@ MonoBehaviour:
   inAction: 0
   canMove: 0
   isTwoHanded: 0
-  lockOnTarget: {fileID: 0}
+  lockOnTarget: {fileID: 153891750}
   animator: {fileID: 0}
   rigidBody: {fileID: 0}
   animatorHook: {fileID: 0}
@@ -1342,11 +1342,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dc1221dce8ad4b8849538fcad460b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockon: 0
+  lockOn: 0
   followSpeed: 3
   mouseSpeed: 2
   target: {fileID: 0}
-  lockonTarget: {fileID: 0}
+  lockOnTarget: {fileID: 0}
   pivot: {fileID: 0}
   cameraTransform: {fileID: 0}
   minAngle: -35
