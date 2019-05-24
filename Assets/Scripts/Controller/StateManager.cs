@@ -124,21 +124,22 @@ namespace SA
       if (run)
         lockOn = false;
 
+      Vector3 targetDirection = (!lockOn) ? moveDirection : lockOnTarget.transform.position - transform.position;
+      targetDirection.y = 0;
+
+      if (targetDirection == Vector3.zero)
+        targetDirection = transform.forward;
+
+      Quaternion rotation = Quaternion.LookRotation(targetDirection);
+      Quaternion targetRotation = Quaternion.Slerp(transform.rotation, rotation, delta * moveAmount * rotateSpeed);
+      transform.rotation = targetRotation;
+
+      animator.SetBool("lockon", lockOn);
+
       if (!lockOn)
-      {
-        Vector3 targetDirection = moveDirection;
-        targetDirection.y = 0;
-
-        if (targetDirection == Vector3.zero)
-          targetDirection = transform.forward;
-
-        Quaternion rotation = Quaternion.LookRotation(targetDirection);
-        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, rotation, delta * moveAmount * rotateSpeed);
-        transform.rotation = targetRotation;
-
-      }
-
-      HandleMovementAnimations();
+        HandleMovementAnimations();
+      else
+        HandleLockOnAnimations(moveDirection);
     }
 
     public void DetectAction()
@@ -178,6 +179,16 @@ namespace SA
     {
       animator.SetBool("run", run);
       animator.SetFloat("vertical", moveAmount, 0.4f, delta);
+    }
+
+    void HandleLockOnAnimations(Vector3 moveDirection)
+    {
+      Vector3 relativeDirection = transform.InverseTransformDirection(moveDirection);
+      float horizontal = relativeDirection.x;
+      float vertical = relativeDirection.z;
+
+      animator.SetFloat("vertical", vertical, 0.4f, delta);
+      animator.SetFloat("horizontal", horizontal, 0.4f, delta);
     }
 
     public bool OnGround()
