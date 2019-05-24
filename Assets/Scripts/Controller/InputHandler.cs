@@ -77,6 +77,8 @@ namespace SA
       float move = Mathf.Abs(vertical) + Mathf.Abs(horizontal);
       stateManager.moveAmount = Mathf.Clamp01(move);
 
+      stateManager.roll = runInput;
+
       if (runInput)
       {
         // stateManager.run = (stateManager.moveAmount > 0);

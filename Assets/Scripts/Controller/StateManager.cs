@@ -189,7 +189,7 @@ namespace SA
 
       if (!lockOn)
       {
-        rollVertical = 1;
+        rollVertical = (moveAmount > 0.3f) ? 1 : 0;
         rollHorizontal = 0;
       }
       else
