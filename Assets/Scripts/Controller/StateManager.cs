@@ -11,7 +11,7 @@ namespace SA
     public float vertical;
     public float horizontal;
     public float moveAmount;
-    public bool attack1, attack2, q, z;
+    public bool attack1, attack2, q, a;
     public Vector3 moveDirection;
 
     [Header("Stats")]
@@ -29,7 +29,7 @@ namespace SA
     public bool isTwoHanded;
 
     [Header("Other")]
-    public EnemyTarget target;
+    public EnemyTarget lockOnTarget;
 
     [HideInInspector]
     public Animator animator;
@@ -146,7 +146,7 @@ namespace SA
       if (!canMove)
         return;
 
-      if (!attack1 && !attack2 && !q && !z)
+      if (!attack1 && !attack2 && !q && !a)
         return;
 
       string targetAnimation = null;
@@ -157,7 +157,7 @@ namespace SA
         targetAnimation = "oh_attack_2";
       if (q)
         targetAnimation = "oh_attack_3";
-      if (z)
+      if (a)
         targetAnimation = "th_attack_1";
 
       if (string.IsNullOrEmpty(targetAnimation))

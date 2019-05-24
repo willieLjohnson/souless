@@ -6,12 +6,12 @@ namespace SA
 {
   public class CameraManager : MonoBehaviour
   {
-    public bool lockon;
+    public bool lockOn;
     public float followSpeed = 3;
     public float mouseSpeed = 2;
 
     public Transform target;
-    public Transform lockonTarget;
+    public Transform lockOnTarget;
 
     [HideInInspector]
     public Transform pivot;
@@ -76,9 +76,9 @@ namespace SA
       tiltAngle = Mathf.Clamp(tiltAngle, minAngle, maxAngle);
       pivot.localRotation = Quaternion.Euler(tiltAngle, 0, 0);
 
-      if (lockon && lockonTarget)
+      if (lockOn && lockOnTarget)
       {
-        Vector3 targetDirection = lockonTarget.position - transform.position;
+        Vector3 targetDirection = lockOnTarget.position - transform.position;
         targetDirection.Normalize();
         // targetDirection.y = 0;
 

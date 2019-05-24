@@ -16,7 +16,7 @@ namespace SA
     bool xInput;
 
     bool qInput;
-    bool zInput;
+    bool lockOnInput;
 
     StateManager stateManager;
     CameraManager cameraManager;
@@ -58,9 +58,9 @@ namespace SA
       attack1Input = Input.GetButton("Attack1");
       attack2Input = Input.GetButton("Attack2");
       twoHandedInput = Input.GetButtonUp("TwoHanded");
+      lockOnInput = Input.GetButtonUp("LockOn");
 
       qInput = Input.GetButton("Q");
-      zInput = Input.GetButton("Z");
       aInput = Input.GetButton("A");
       xInput = Input.GetButton("X");
     }
@@ -89,12 +89,20 @@ namespace SA
       stateManager.attack1 = attack1Input;
       stateManager.attack2 = attack2Input;
       stateManager.q = qInput;
-      stateManager.z = zInput;
+      stateManager.a = aInput;
+
 
       if (twoHandedInput)
       {
         stateManager.isTwoHanded = !stateManager.isTwoHanded;
         stateManager.HandleTwoHanded();
+      }
+
+      if (lockOnInput)
+      {
+        stateManager.lockOn = !stateManager.lockOn;
+        if (!stateManager.lockOnTarget)
+          stateManager.lockOn = false;
       }
     }
   }
