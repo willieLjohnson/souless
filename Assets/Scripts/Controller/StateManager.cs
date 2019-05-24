@@ -187,8 +187,8 @@ namespace SA
       float horizontal = relativeDirection.x;
       float vertical = relativeDirection.z;
 
-      animator.SetFloat("vertical", vertical, 0.4f, delta);
-      animator.SetFloat("horizontal", horizontal, 0.4f, delta);
+      animator.SetFloat("vertical", vertical, 0.2f, delta);
+      animator.SetFloat("horizontal", horizontal, 0.2f, delta);
     }
 
     public bool OnGround()
