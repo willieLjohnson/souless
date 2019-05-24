@@ -13,6 +13,7 @@ namespace SA
     public float moveAmount;
     public bool attack1, attack2, q, a;
     public Vector3 moveDirection;
+    public bool roll;
 
     [Header("Stats")]
     public float moveSpeed = 3.5f;
@@ -27,6 +28,7 @@ namespace SA
     public bool inAction;
     public bool canMove;
     public bool isTwoHanded;
+
 
     [Header("Other")]
     public EnemyTarget lockOnTarget;
@@ -110,6 +112,8 @@ namespace SA
       if (!canMove)
         return;
 
+      HandleRolls();
+
       animator.applyRootMotion = false;
 
       rigidBody.drag = (moveAmount > 0 || !onGround) ? 0 : 4;
@@ -173,6 +177,35 @@ namespace SA
       this.delta = delta;
       onGround = OnGround();
       animator.SetBool("onGround", onGround);
+    }
+
+    void HandleRolls()
+    {
+      if (!roll)
+        return;
+
+      float rollVertical = vertical;
+      float rollHorizontal = horizontal;
+
+      if (!lockOn)
+      {
+        rollVertical = 1;
+        rollHorizontal = 0;
+      }
+      else
+      {
+        if (Mathf.Abs(rollVertical) < 0.3f)
+          rollVertical = 0;
+        if (Mathf.Abs(rollHorizontal) < 0.3f)
+          rollHorizontal = 0;
+      }
+
+      animator.SetFloat("vertical", rollVertical);
+      animator.SetFloat("horizontal", rollHorizontal);
+
+      canMove = false;
+      inAction = true;
+      animator.CrossFade("Rolls", 0.2f);
     }
 
     void HandleMovementAnimations()

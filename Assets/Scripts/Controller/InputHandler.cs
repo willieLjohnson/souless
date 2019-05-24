@@ -79,11 +79,11 @@ namespace SA
 
       if (runInput)
       {
-        stateManager.run = (stateManager.moveAmount > 0);
+        // stateManager.run = (stateManager.moveAmount > 0);
       }
       else
       {
-        stateManager.run = false;
+        // stateManager.run = false;
       }
 
       stateManager.attack1 = attack1Input;
