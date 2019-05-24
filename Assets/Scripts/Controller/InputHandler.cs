@@ -86,8 +86,8 @@ namespace SA
         stateManager.run = false;
       }
 
-      stateManager.fire1 = attack1Input;
-      stateManager.r = attack2Input;
+      stateManager.attack1 = attack1Input;
+      stateManager.attack2 = attack2Input;
       stateManager.q = qInput;
       stateManager.z = zInput;
 
