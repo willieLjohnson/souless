@@ -8,13 +8,13 @@ namespace SA
   {
     float vertical;
     float horizontal;
+    bool attack1Input;
+    bool attack2Input;
+    bool twoHandedInput;
     bool runInput;
     bool aInput;
     bool xInput;
-    bool yInput;
 
-    bool fire1Input;
-    bool rInput;
     bool qInput;
     bool zInput;
 
@@ -54,13 +54,15 @@ namespace SA
       vertical = Input.GetAxis("Vertical");
       horizontal = Input.GetAxis("Horizontal");
       runInput = Input.GetButton("Run");
-      fire1Input = Input.GetButton("Fire1");
-      rInput = Input.GetButton("R");
+
+      attack1Input = Input.GetButton("Attack1");
+      attack2Input = Input.GetButton("Attack2");
+      twoHandedInput = Input.GetButtonUp("TwoHanded");
+
       qInput = Input.GetButton("Q");
       zInput = Input.GetButton("Z");
       aInput = Input.GetButton("A");
       xInput = Input.GetButton("X");
-      yInput = Input.GetButtonUp("Y");
     }
 
     void UpdateStates()
@@ -84,12 +86,12 @@ namespace SA
         stateManager.run = false;
       }
 
-      stateManager.fire1 = fire1Input;
-      stateManager.r = rInput;
+      stateManager.fire1 = attack1Input;
+      stateManager.r = attack2Input;
       stateManager.q = qInput;
       stateManager.z = zInput;
 
-      if (yInput)
+      if (twoHandedInput)
       {
         stateManager.isTwoHanded = !stateManager.isTwoHanded;
         stateManager.HandleTwoHanded();
