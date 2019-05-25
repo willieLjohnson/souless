@@ -8,13 +8,32 @@ namespace SA
   {
     Animator animator;
     StateManager stateManager;
-
     public float rootMotionMultiplier;
+    bool rolling;
+    float rollTime; // TODO: Rename
+    AnimationCurve rollCurve;
 
     public void Init(StateManager stateManager)
     {
       this.stateManager = stateManager;
       animator = stateManager.animator;
+      rollCurve = stateManager.rollCurve;
+    }
+
+    public void InitForRoll()
+    {
+      rolling = true;
+      rollTime = 0;
+    }
+
+    public void CloseRoll()
+    {
+      if (!rolling)
+        return;
+
+      rootMotionMultiplier = 1;
+
+      rolling = false;
     }
 
     void OnAnimatorMove()
@@ -27,10 +46,22 @@ namespace SA
       if (rootMotionMultiplier == 0)
         rootMotionMultiplier = 1;
 
-      Vector3 delta = animator.deltaPosition;
-      delta.y = 0;
-      Vector3 velocity = (delta * rootMotionMultiplier) / stateManager.delta;
-      stateManager.rigidBody.velocity = velocity;
+      if (!rolling)
+      {
+        Vector3 delta = animator.deltaPosition;
+        delta.y = 0;
+        Vector3 velocity = (delta * rootMotionMultiplier) / stateManager.delta;
+        stateManager.rigidBody.velocity = velocity;
+      }
+      else
+      {
+        rollTime += Time.deltaTime;
+        float zValue = rollCurve.Evaluate(rollTime);
+        Vector3 zVelocity = Vector3.forward * zValue;
+        Vector3 relative = transform.TransformDirection(zVelocity);
+        Vector3 velocity = (zVelocity * rootMotionMultiplier) / stateManager.delta;
+        stateManager.rigidBody.velocity = relative;
+      }
     }
   }
 

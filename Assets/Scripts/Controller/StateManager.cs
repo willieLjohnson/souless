@@ -33,6 +33,7 @@ namespace SA
 
     [Header("Other")]
     public EnemyTarget lockOnTarget;
+    public AnimationCurve rollCurve;
 
     [HideInInspector]
     public Animator animator;
@@ -113,7 +114,8 @@ namespace SA
       if (!canMove)
         return;
 
-      animatorHook.rootMotionMultiplier = 1;
+      // animatorHook.rootMotionMultiplier = 1;
+      animatorHook.CloseRoll();
       HandleRolls();
 
       animator.applyRootMotion = false;
@@ -221,6 +223,7 @@ namespace SA
       canMove = false;
       inAction = true;
       animator.CrossFade("Rolls", 0.2f);
+      animatorHook.InitForRoll();
     }
 
     void HandleMovementAnimations()

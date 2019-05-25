@@ -547,10 +547,12 @@ MonoBehaviour:
   q: 0
   a: 0
   moveDirection: {x: 0, y: 0, z: 0}
+  roll: 0
   moveSpeed: 3.5
   runSpeed: 5.5
   rotateSpeed: 9
   toGround: 0.5
+  rollSpeed: 1
   onGround: 0
   run: 0
   lockOn: 0
@@ -558,6 +560,30 @@ MonoBehaviour:
   canMove: 0
   isTwoHanded: 0
   lockOnTarget: {fileID: 153891750}
+  rollCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   animator: {fileID: 0}
   rigidBody: {fileID: 0}
   animatorHook: {fileID: 0}
