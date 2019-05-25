@@ -213,9 +213,13 @@ namespace SA
 
         Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
         transform.rotation = targetRotation;
+        animatorHook.InitForRoll();
+        animatorHook.rootMotionMultiplier = rollSpeed;
       }
-
-      animatorHook.rootMotionMultiplier = rollSpeed;
+      else
+      {
+        animatorHook.rootMotionMultiplier = 1.3f;
+      }
 
       animator.SetFloat("vertical", rollVertical);
       animator.SetFloat("horizontal", rollHorizontal);
@@ -223,7 +227,6 @@ namespace SA
       canMove = false;
       inAction = true;
       animator.CrossFade("Rolls", 0.2f);
-      animatorHook.InitForRoll();
     }
 
     void HandleMovementAnimations()
