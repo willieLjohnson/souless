@@ -186,18 +186,29 @@ namespace SA
 
       float rollVertical = vertical;
       float rollHorizontal = horizontal;
+      rollVertical = (moveAmount > 0.3f) ? 1 : 0;
+      rollHorizontal = 0;
 
-      if (!lockOn)
+      // if (!lockOn)
+      // {
+      //   rollVertical = (moveAmount > 0.3f) ? 1 : 0;
+      //   rollHorizontal = 0;
+      // }
+      // else
+      // {
+      //   if (Mathf.Abs(rollVertical) < 0.3f)
+      //     rollVertical = 0;
+      //   if (Mathf.Abs(rollHorizontal) < 0.3f)
+      //     rollHorizontal = 0;
+      // }
+
+      if (rollVertical != 0)
       {
-        rollVertical = (moveAmount > 0.3f) ? 1 : 0;
-        rollHorizontal = 0;
-      }
-      else
-      {
-        if (Mathf.Abs(rollVertical) < 0.3f)
-          rollVertical = 0;
-        if (Mathf.Abs(rollHorizontal) < 0.3f)
-          rollHorizontal = 0;
+        if (moveDirection == Vector3.zero)
+          moveDirection = transform.forward;
+
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+        transform.rotation = targetRotation;
       }
 
       animator.SetFloat("vertical", rollVertical);
