@@ -17,7 +17,6 @@ namespace SA
     {
       this.stateManager = stateManager;
       animator = stateManager.animator;
-      rollCurve = stateManager.rollCurve;
     }
 
     public void InitForRoll()
@@ -32,7 +31,7 @@ namespace SA
         return;
 
       rootMotionMultiplier = 1;
-
+      rollTime = 0;
       rolling = false;
     }
 
@@ -55,12 +54,16 @@ namespace SA
       }
       else
       {
-        rollTime += Time.deltaTime;
-        float zValue = rollCurve.Evaluate(rollTime);
+        rollTime += stateManager.delta / 0.6f;
+        if (rollTime > 1)
+        {
+          rollTime = 1;
+        }
+        float zValue = stateManager.rollCurve.Evaluate(rollTime);
         Vector3 zVelocity = Vector3.forward * zValue;
         Vector3 relative = transform.TransformDirection(zVelocity);
-        Vector3 velocity = (zVelocity * rootMotionMultiplier) / stateManager.delta;
-        stateManager.rigidBody.velocity = relative;
+        Vector3 velocity = (relative * rootMotionMultiplier);
+        stateManager.rigidBody.velocity = velocity;
       }
     }
   }

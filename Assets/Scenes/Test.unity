@@ -552,7 +552,7 @@ MonoBehaviour:
   runSpeed: 5.5
   rotateSpeed: 9
   toGround: 0.5
-  rollSpeed: 1
+  rollSpeed: 15
   onGround: 0
   run: 0
   lockOn: 0
@@ -565,22 +565,40 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      value: 0.003540039
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      time: 0.09646021
+      value: 0.98643017
+      inSlope: 0.72758853
+      outSlope: 0.088406
+      tangentMode: 1
       weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.089704625
+    - serializedVersion: 3
+      time: 0.86352247
+      value: 0.93818617
+      inSlope: -0.22202076
+      outSlope: -1.0355347
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.096147016
+      outWeight: 0.97456974
+    - serializedVersion: 3
+      time: 0.9975625
+      value: 0
+      inSlope: -12.626241
+      outSlope: -0.8523031
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.093860015
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
