@@ -18,8 +18,9 @@ namespace SA
     [Header("Stats")]
     public float moveSpeed = 3.5f;
     public float runSpeed = 5.5f;
-    public float rotateSpeed = 9;
+    public float rotateSpeed = 9f;
     public float toGround = 0.5f;
+    public float rollSpeed = 1f;
 
     [Header("States")]
     public bool onGround;
@@ -112,6 +113,7 @@ namespace SA
       if (!canMove)
         return;
 
+      animatorHook.rootMotionMultiplier = 1;
       HandleRolls();
 
       animator.applyRootMotion = false;
@@ -210,6 +212,8 @@ namespace SA
         Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
         transform.rotation = targetRotation;
       }
+
+      animatorHook.rootMotionMultiplier = rollSpeed;
 
       animator.SetFloat("vertical", rollVertical);
       animator.SetFloat("horizontal", rollHorizontal);

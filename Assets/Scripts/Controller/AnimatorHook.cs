@@ -8,6 +8,9 @@ namespace SA
   {
     Animator animator;
     StateManager stateManager;
+
+    public float rootMotionMultiplier;
+
     public void Init(StateManager stateManager)
     {
       this.stateManager = stateManager;
@@ -20,10 +23,13 @@ namespace SA
         return;
 
       stateManager.rigidBody.drag = 0;
-      float multiplier = 1;
+
+      if (rootMotionMultiplier == 0)
+        rootMotionMultiplier = 1;
+
       Vector3 delta = animator.deltaPosition;
       delta.y = 0;
-      Vector3 velocity = (delta * multiplier) / stateManager.delta;
+      Vector3 velocity = (delta * rootMotionMultiplier) / stateManager.delta;
       stateManager.rigidBody.velocity = velocity;
     }
   }
