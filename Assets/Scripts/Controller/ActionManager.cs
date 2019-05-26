@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SA
@@ -8,14 +10,16 @@ namespace SA
 
     public void Init()
     {
-      if (actionSlots.Count != 0)
-        return;
 
+    }
+
+    ActionManager()
+    {
       for (int i = 0; i < 4; i++)
       {
         Action action = new Action();
         action.input = (ActionInput)i;
-        actionSlots.Add(action);
+        actionSlots.Add(action); 
       }
     }
     public ActionInput GetAction(StateManager stateManager)

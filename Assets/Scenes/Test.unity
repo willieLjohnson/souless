@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 321505085}
   - component: {fileID: 321505087}
   - component: {fileID: 321505088}
+  - component: {fileID: 321505089}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -526,8 +527,8 @@ MonoBehaviour:
   moveAmount: 0
   attack1: 0
   attack2: 0
-  q: 0
-  a: 0
+  action1: 0
+  action2: 0
   moveDirection: {x: 0, y: 0, z: 0}
   roll: 0
   moveSpeed: 3.5
@@ -588,10 +589,32 @@ MonoBehaviour:
   animator: {fileID: 0}
   rigidBody: {fileID: 0}
   animatorHook: {fileID: 0}
+  actionManager: {fileID: 0}
   delta: 0
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &321505089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321505083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d86e688c7b27f5469d36530ef9c5f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSlots:
+  - input: 0
+    targetAnimation: oh_attack_1
+  - input: 1
+    targetAnimation: oh_attack_2
+  - input: 2
+    targetAnimation: oh_attack_3
+  - input: 3
+    targetAnimation: parry
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

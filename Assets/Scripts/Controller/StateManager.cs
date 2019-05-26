@@ -11,7 +11,7 @@ namespace SA
     public float vertical;
     public float horizontal;
     public float moveAmount;
-    public bool attack1, attack2, q, a;
+    public bool attack1, attack2, action1, action2;
     public Vector3 moveDirection;
     public bool roll;
 
@@ -42,6 +42,8 @@ namespace SA
     public Rigidbody rigidBody;
     [HideInInspector]
     public AnimatorHook animatorHook;
+    [HideInInspector]
+    public ActionManager actionManager;
 
 
     [HideInInspector]
@@ -58,6 +60,9 @@ namespace SA
       rigidBody.angularDrag = 999;
       rigidBody.drag = 4;
       rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+      actionManager = GetComponent<ActionManager>();
+      actionManager.Init();
 
       animatorHook = activeModel.AddComponent<AnimatorHook>();
       animatorHook.Init(this);
@@ -156,7 +161,7 @@ namespace SA
       if (!canMove)
         return;
 
-      if (!attack1 && !attack2 && !q && !a)
+      if (!attack1 && !attack2 && !action1 && !action2)
         return;
 
       string targetAnimation = null;
@@ -165,9 +170,9 @@ namespace SA
         targetAnimation = "oh_attack_1";
       if (attack2)
         targetAnimation = "oh_attack_2";
-      if (q)
+      if (action1)
         targetAnimation = "oh_attack_3";
-      if (a)
+      if (action2)
         targetAnimation = "th_attack_1";
 
       if (string.IsNullOrEmpty(targetAnimation))

@@ -95,8 +95,8 @@ namespace SA
 
       stateManager.attack1 = attack1Input;
       stateManager.attack2 = attack2Input;
-      stateManager.q = qInput;
-      stateManager.a = aInput;
+      stateManager.action1 = qInput;
+      stateManager.action2 = aInput;
 
       if (twoHandedInput)
       {
