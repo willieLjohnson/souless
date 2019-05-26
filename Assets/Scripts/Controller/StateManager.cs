@@ -166,14 +166,10 @@ namespace SA
 
       string targetAnimation = null;
 
-      if (attack1)
-        targetAnimation = "oh_attack_1";
-      if (attack2)
-        targetAnimation = "oh_attack_2";
-      if (action1)
-        targetAnimation = "oh_attack_3";
-      if (action2)
-        targetAnimation = "th_attack_1";
+      Action slot = actionManager.GetActionSlot(this);
+      if (slot == null)
+        return;
+      targetAnimation = slot.targetAnimation;
 
       if (string.IsNullOrEmpty(targetAnimation))
         return;

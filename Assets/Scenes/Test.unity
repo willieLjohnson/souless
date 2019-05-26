@@ -612,9 +612,9 @@ MonoBehaviour:
   - input: 1
     targetAnimation: oh_attack_2
   - input: 2
-    targetAnimation: oh_attack_3
-  - input: 3
     targetAnimation: parry
+  - input: 3
+    targetAnimation: oh_attack_3
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

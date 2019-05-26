@@ -19,10 +19,28 @@ namespace SA
       {
         Action action = new Action();
         action.input = (ActionInput)i;
-        actionSlots.Add(action); 
+        actionSlots.Add(action);
       }
     }
-    public ActionInput GetAction(StateManager stateManager)
+
+    public Action GetActionSlot(StateManager stateManager)
+    {
+      ActionInput actionInput = GetActionInput(stateManager);
+      return GetAction(actionInput);
+    }
+
+    Action GetAction(ActionInput input)
+    {
+      for (int i = 0; i < actionSlots.Count; i++)
+      {
+        if (actionSlots[i].input == input)
+          return actionSlots[i];
+      }
+
+      return null;
+    }
+
+    public ActionInput GetActionInput(StateManager stateManager)
     {
       if (stateManager.attack1)
         return ActionInput.attack1;
