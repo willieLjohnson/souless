@@ -86,11 +86,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: A
+    m_Name: Action1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: c
+    positiveButton: e
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -102,7 +102,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Q
+    m_Name: Action2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 

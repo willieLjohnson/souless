@@ -65,8 +65,8 @@ namespace SA
       twoHandedInput = Input.GetButtonUp("TwoHanded");
       lockOnInput = Input.GetButtonUp("LockOn");
 
-      qInput = Input.GetButton("Q");
-      aInput = Input.GetButton("A");
+      qInput = Input.GetButton("Action2");
+      aInput = Input.GetButton("Action1");
       xInput = Input.GetButton("X");
 
       if (runInput)
