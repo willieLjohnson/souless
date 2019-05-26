@@ -559,7 +559,7 @@ MonoBehaviour:
   inAction: 0
   canMove: 0
   isTwoHanded: 0
-  lockOnTarget: {fileID: 153891750}
+  lockOnTarget: {fileID: 1244655905}
   rollCurve:
     serializedVersion: 2
     m_Curve:
@@ -985,7 +985,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
       propertyPath: m_Name
-      value: Enemy (1)
+      value: Enemy Giant
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
