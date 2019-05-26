@@ -18,6 +18,7 @@ namespace SA
     public Transform pivot;
     [HideInInspector]
     public Transform cameraTransform;
+    StateManager stateManager;
 
     float turnSmoothing = .1f;
     public float minAngle = -35f;
@@ -34,9 +35,10 @@ namespace SA
 
     bool moved;
 
-    public void Init(Transform target)
+    public void Init(StateManager stateManager)
     {
-      this.target = target;
+      this.stateManager = stateManager;
+      target = stateManager.transform;
 
       cameraTransform = Camera.main.transform;
       pivot = cameraTransform.parent;
@@ -54,6 +56,7 @@ namespace SA
         if (!lockOnTransform)
         {
           lockOnTransform = lockOnTarget.GetTarget();
+          stateManager.lockOnTransform = lockOnTransform;
         }
 
         if (Mathf.Abs(horizontal) > 0.6f)
@@ -61,6 +64,7 @@ namespace SA
           if (!moved)
           {
             lockOnTransform = lockOnTarget.GetTarget((horizontal > 0));
+            stateManager.lockOnTransform = lockOnTransform;
             moved = true;
           }
         }
@@ -98,7 +102,6 @@ namespace SA
         smoothY = vertical;
         smoothX = horizontal;
       }
-
 
       tiltAngle -= smoothY * targetSpeed;
       tiltAngle = Mathf.Clamp(tiltAngle, minAngle, maxAngle);

@@ -33,6 +33,7 @@ namespace SA
 
     [Header("Other")]
     public EnemyTarget lockOnTarget;
+    public Transform lockOnTransform;
     public AnimationCurve rollCurve;
 
     [HideInInspector]
@@ -132,7 +133,7 @@ namespace SA
       if (run)
         lockOn = false;
 
-      Vector3 targetDirection = (!lockOn) ? moveDirection : lockOnTarget.transform.position - transform.position;
+      Vector3 targetDirection = (!lockOn) ? moveDirection : (lockOnTransform) ? lockOnTransform.transform.position - transform.position : moveDirection;
       targetDirection.y = 0;
 
       if (targetDirection == Vector3.zero)

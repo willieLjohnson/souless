@@ -542,6 +542,7 @@ MonoBehaviour:
   canMove: 0
   isTwoHanded: 0
   lockOnTarget: {fileID: 1244655905}
+  lockOnTransform: {fileID: 0}
   rollCurve:
     serializedVersion: 2
     m_Curve:
@@ -875,7 +876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   targets: []
-  humanoidBones: 
+  humanoidBones: 000000001700000018000000
 --- !u!1001 &1314272574
 PrefabInstance:
   m_ObjectHideFlags: 0

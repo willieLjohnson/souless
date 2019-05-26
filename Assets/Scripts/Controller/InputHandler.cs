@@ -30,7 +30,7 @@ namespace SA
       stateManager.Init();
 
       cameraManager = CameraManager.singleton;
-      cameraManager.Init(this.transform);
+      cameraManager.Init(stateManager);
     }
 
     // Update is called once per frame
@@ -107,7 +107,9 @@ namespace SA
           stateManager.lockOn = false;
 
         cameraManager.lockOnTarget = stateManager.lockOnTarget;
+        stateManager.lockOnTransform = cameraManager.lockOnTransform;
         cameraManager.lockOn = stateManager.lockOn;
+
       }
     }
   }
