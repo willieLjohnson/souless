@@ -45,18 +45,13 @@ namespace SA
       UpdateStates();
       stateManager.FixedTick(delta);
       cameraManager.Tick(delta);
-
-      if (!runInput)
-        runTimer = 0;
-
-      if (stateManager.roll)
-        stateManager.roll = false;
     }
 
     void Update()
     {
       delta = Time.deltaTime;
       stateManager.Tick(delta);
+      ResetInput();
     }
 
     void GetInput()
@@ -120,6 +115,18 @@ namespace SA
         cameraManager.lockOn = stateManager.lockOn;
 
       }
+    }
+
+    void ResetInput()
+    {
+      if (!runInput)
+        runTimer = 0;
+
+      if (stateManager.roll)
+        stateManager.roll = false;
+
+      if (stateManager.run)
+        stateManager.run = false;
     }
   }
 
