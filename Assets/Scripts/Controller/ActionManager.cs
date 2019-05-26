@@ -8,9 +8,19 @@ namespace SA
   {
     public List<Action> actionSlots = new List<Action>();
 
-    public void Init()
-    {
+    StateManager stateManager;
 
+    public void Init(StateManager stateManager)
+    {
+      this.stateManager = stateManager;
+
+      Weapon weapon = stateManager.inventoryManager.currentWeapon;
+
+      for (int i = 0; i < weapon.actions.Count; i++)
+      {
+        Action action = GetAction(weapon.actions[i].input);
+        action.targetAnimation = weapon.actions[i].targetAnimation;
+      }
     }
 
     ActionManager()

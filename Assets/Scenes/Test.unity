@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 321505087}
   - component: {fileID: 321505088}
   - component: {fileID: 321505089}
+  - component: {fileID: 321505090}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -590,6 +591,7 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   animatorHook: {fileID: 0}
   actionManager: {fileID: 0}
+  inventoryManager: {fileID: 0}
   delta: 0
   ignoreLayers:
     serializedVersion: 2
@@ -608,13 +610,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionSlots:
   - input: 0
-    targetAnimation: oh_attack_1
+    targetAnimation: 
   - input: 1
-    targetAnimation: oh_attack_2
+    targetAnimation: 
   - input: 2
-    targetAnimation: parry
+    targetAnimation: 
   - input: 3
-    targetAnimation: oh_attack_3
+    targetAnimation: 
+--- !u!114 &321505090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321505083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229a7f8637c98cb449a91b66f3143955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon:
+    actions:
+    - input: 0
+      targetAnimation: oh_attack_1
+    twoHandedActions: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

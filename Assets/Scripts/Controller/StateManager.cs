@@ -44,7 +44,8 @@ namespace SA
     public AnimatorHook animatorHook;
     [HideInInspector]
     public ActionManager actionManager;
-
+    [HideInInspector]
+    public InventoryManager inventoryManager;
 
     [HideInInspector]
     public float delta;
@@ -61,8 +62,11 @@ namespace SA
       rigidBody.drag = 4;
       rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
+      inventoryManager = GetComponent<InventoryManager>();
+      inventoryManager.Init();
+
       actionManager = GetComponent<ActionManager>();
-      actionManager.Init();
+      actionManager.Init(this);
 
       animatorHook = activeModel.AddComponent<AnimatorHook>();
       animatorHook.Init(this);
