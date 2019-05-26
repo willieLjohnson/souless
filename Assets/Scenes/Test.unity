@@ -212,24 +212,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 34.667, y: 0, z: 0}
---- !u!1 &153891749 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: ca83604b987b45643ae48df0446775d9,
-    type: 3}
-  m_PrefabInstance: {fileID: 291743629}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &153891750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153891749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce699e0b242e2dc4093f963ba3ca6026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &184631248
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +873,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce699e0b242e2dc4093f963ba3ca6026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
+  targets: []
+  humanoidBones: 000000000300000004000000
 --- !u!1001 &1314272574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -990,17 +975,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.3
+      value: 4.3111
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.02
+      value: 12.195
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
@@ -1045,17 +1030,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.5417
+      value: 3.063765
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.5417
+      value: 3.063765
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5417
+      value: 3.063765
       objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
@@ -1391,6 +1376,7 @@ MonoBehaviour:
   mouseSpeed: 2
   target: {fileID: 0}
   lockOnTarget: {fileID: 0}
+  lockOnTransform: {fileID: 0}
   pivot: {fileID: 0}
   cameraTransform: {fileID: 0}
   minAngle: -35

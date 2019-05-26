@@ -11,7 +11,7 @@ namespace SA
     public List<HumanBodyBones> humanoidBones = new List<HumanBodyBones>();
 
     Animator animator;
-    
+
     void Start()
     {
       animator = GetComponent<Animator>();
@@ -24,22 +24,36 @@ namespace SA
       }
     }
 
-    public Transform GetTarget()
+    public Transform GetTarget(bool negative = false)
     {
       if (targets.Count == 0)
         return transform;
 
       int targetIndex = index;
-      if (index < targets.Count - 1)
+      if (!negative)
       {
-        index++;
+        if (index < targets.Count - 1)
+        {
+          index++;
+        }
+        else
+        {
+          index = 0;
+          targetIndex = 0;
+        }
       }
       else
       {
-        index = 0;
-        targetIndex = 0;
+        if (index < 0)
+        {
+          index = targets.Count - 1;
+          targetIndex = targets.Count - 1;
+        }
+        else
+        {
+          index--;
+        }
       }
-
       return targets[targetIndex];
     }
   }

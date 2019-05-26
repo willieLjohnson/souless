@@ -11,7 +11,8 @@ namespace SA
     public float mouseSpeed = 2;
 
     public Transform target;
-    public Transform lockOnTarget;
+    public EnemyTarget lockOnTarget;
+    public Transform lockOnTransform;
 
     [HideInInspector]
     public Transform pivot;
@@ -31,6 +32,8 @@ namespace SA
     public float lookAngle;
     public float tiltAngle;
 
+    bool moved;
+
     public void Init(Transform target)
     {
       this.target = target;
@@ -45,6 +48,31 @@ namespace SA
       float horizontal = Input.GetAxis("Mouse X");
 
       float targetSpeed = mouseSpeed;
+
+      if (lockOnTarget)
+      {
+        if (!lockOnTransform)
+        {
+          lockOnTransform = lockOnTarget.GetTarget();
+        }
+
+        if (Mathf.Abs(horizontal) > 0.6f)
+        {
+          if (!moved)
+          {
+            lockOnTransform = lockOnTarget.GetTarget((horizontal > 0));
+            moved = true;
+          }
+        }
+      }
+
+      if (moved)
+      {
+        if (Mathf.Abs(horizontal) < 0.6f)
+        {
+          moved = false;
+        }
+      }
 
       FollowTarget(delta);
       HandleRotations(delta, vertical, horizontal, targetSpeed);
@@ -78,7 +106,7 @@ namespace SA
 
       if (lockOn && lockOnTarget)
       {
-        Vector3 targetDirection = lockOnTarget.position - transform.position;
+        Vector3 targetDirection = lockOnTransform.position - transform.position;
         targetDirection.Normalize();
         // targetDirection.y = 0;
 
@@ -90,7 +118,7 @@ namespace SA
 
         return;
       }
-      
+
       lookAngle += smoothX * targetSpeed;
       transform.rotation = Quaternion.Euler(0, lookAngle, 0);
 
