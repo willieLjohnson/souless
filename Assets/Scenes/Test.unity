@@ -875,7 +875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   targets: []
-  humanoidBones: 000000000300000004000000
+  humanoidBones: 
 --- !u!1001 &1314272574
 PrefabInstance:
   m_ObjectHideFlags: 0

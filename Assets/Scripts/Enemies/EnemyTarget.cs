@@ -29,32 +29,23 @@ namespace SA
       if (targets.Count == 0)
         return transform;
 
-      int targetIndex = index;
       if (!negative)
       {
         if (index < targets.Count - 1)
-        {
           index++;
-        }
         else
-        {
           index = 0;
-          targetIndex = 0;
-        }
       }
       else
       {
-        if (index < 0)
-        {
+        if (index <= 0)
           index = targets.Count - 1;
-          targetIndex = targets.Count - 1;
-        }
         else
-        {
           index--;
-        }
       }
-      return targets[targetIndex];
+
+      index = Mathf.Clamp(index, 0, targets.Count);
+      return targets[index];
     }
   }
 }
