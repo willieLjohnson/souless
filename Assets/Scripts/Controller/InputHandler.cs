@@ -18,6 +18,10 @@ namespace SA
     bool qInput;
     bool lockOnInput;
 
+    float runTimer;
+    float rtTimer;
+    float ltTimer;
+
     StateManager stateManager;
     CameraManager cameraManager;
 
@@ -41,6 +45,12 @@ namespace SA
       UpdateStates();
       stateManager.FixedTick(delta);
       cameraManager.Tick(delta);
+
+      if (!runInput)
+        runTimer = 0;
+
+      if (stateManager.roll)
+        stateManager.roll = false;
     }
 
     void Update()
@@ -63,6 +73,9 @@ namespace SA
       qInput = Input.GetButton("Q");
       aInput = Input.GetButton("A");
       xInput = Input.GetButton("X");
+
+      if (runInput)
+        runTimer += delta;
     }
 
     void UpdateStates()
@@ -77,22 +90,18 @@ namespace SA
       float move = Mathf.Abs(vertical) + Mathf.Abs(horizontal);
       stateManager.moveAmount = Mathf.Clamp01(move);
 
-      stateManager.roll = runInput;
+      if (runInput && runTimer > 0.5f)
+      {
+        stateManager.run = (stateManager.moveAmount > 0);
+      }
 
-      if (runInput)
-      {
-        // stateManager.run = (stateManager.moveAmount > 0);
-      }
-      else
-      {
-        // stateManager.run = false;
-      }
+      if (!runInput && runTimer > 0 && runTimer < 0.5f)
+        stateManager.roll = true;
 
       stateManager.attack1 = attack1Input;
       stateManager.attack2 = attack2Input;
       stateManager.q = qInput;
       stateManager.a = aInput;
-
 
       if (twoHandedInput)
       {
