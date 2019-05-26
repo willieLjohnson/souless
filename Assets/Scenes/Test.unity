@@ -534,7 +534,7 @@ MonoBehaviour:
   runSpeed: 5.5
   rotateSpeed: 9
   toGround: 0.5
-  rollSpeed: 15
+  rollSpeed: 10
   onGround: 0
   run: 0
   lockOn: 0
