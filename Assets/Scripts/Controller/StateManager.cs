@@ -107,6 +107,8 @@ namespace SA
 
       DetectItemAction();
       DetectAction();
+      inventoryManager.currentWeapon.weaponModel.SetActive(!usingItem);
+
 
       if (inAction)
       {
@@ -180,7 +182,7 @@ namespace SA
         return;
 
       usingItem = true;
-      animator.CrossFade(targetAnimation, 0.2f);
+      animator.Play(targetAnimation);
     }
 
     public void DetectAction()
