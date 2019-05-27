@@ -620,7 +620,7 @@ MonoBehaviour:
   - input: 3
     targetAnimation: 
   consumableItem:
-    targetAnimation: bestus
+    targetAnimation: use_item
     itemID: 
 --- !u!114 &321505090
 MonoBehaviour:
@@ -649,6 +649,7 @@ MonoBehaviour:
       targetAnimation: th_attack_1
     - input: 1
       targetAnimation: th_attack_2
+    weaponModel: {fileID: 1414519362}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1123,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -9042772588573301732, guid: ca83604b987b45643ae48df0446775d9,
     type: 3}
   m_PrefabInstance: {fileID: 1315468692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1414519362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 1051f7c63a5f22f42a2f8c5351eccc55,
+    type: 3}
+  m_PrefabInstance: {fileID: 1542223159}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1491053654
 GameObject:

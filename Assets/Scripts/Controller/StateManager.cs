@@ -140,6 +140,11 @@ namespace SA
       rigidBody.drag = (moveAmount > 0 || !onGround) ? 0 : 4;
 
       float targetSpeed = moveSpeed;
+      if (usingItem)
+      {
+        run = false;
+        moveAmount = Mathf.Clamp(moveAmount, 0, 0.45f);
+      }
       if (run)
         targetSpeed = runSpeed;
 
