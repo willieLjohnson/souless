@@ -14,6 +14,7 @@ namespace SA
     public bool attack1, attack2, action1, action2;
     public Vector3 moveDirection;
     public bool roll;
+    public bool useItem;
 
     [Header("Stats")]
     public float moveSpeed = 3.5f;
@@ -29,6 +30,7 @@ namespace SA
     public bool inAction;
     public bool canMove;
     public bool isTwoHanded;
+    public bool usingItem;
 
 
     [Header("Other")]
@@ -101,6 +103,7 @@ namespace SA
     {
       this.delta = delta;
 
+      DetectItemAction();
       DetectAction();
 
       if (inAction)
@@ -160,9 +163,27 @@ namespace SA
         HandleLockOnAnimations(moveDirection);
     }
 
+    public void DetectItemAction()
+    {
+      if (!canMove || usingItem)
+        return;
+
+      if (!useItem)
+        return;
+
+      ItemAction slot = actionManager.consumableItem;
+      string targetAnimation = slot.targetAnimation;
+
+      if (string.IsNullOrEmpty(targetAnimation))
+        return;
+
+      usingItem = true;
+      animator.CrossFade(targetAnimation, 0.2f);
+    }
+
     public void DetectAction()
     {
-      if (!canMove)
+      if (!canMove || usingItem)
         return;
 
       if (!attack1 && !attack2 && !action1 && !action2)
@@ -191,7 +212,7 @@ namespace SA
 
     void HandleRolls()
     {
-      if (!roll)
+      if (!roll || usingItem)
         return;
 
       float rollVertical = vertical;

@@ -8,6 +8,8 @@ namespace SA
   {
     public List<Action> actionSlots = new List<Action>();
 
+    public ItemAction consumableItem;
+
     StateManager stateManager;
 
     public void Init(StateManager stateManager)
@@ -102,5 +104,12 @@ namespace SA
   {
     public ActionInput input;
     public string targetAnimation;
+  }
+
+  [System.Serializable]
+  public class ItemAction
+  {
+    public string targetAnimation;
+    public string itemID;
   }
 }

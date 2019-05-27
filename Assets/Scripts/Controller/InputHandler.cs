@@ -13,7 +13,7 @@ namespace SA
     bool twoHandedInput;
     bool runInput;
     bool aInput;
-    bool xInput;
+    bool useItemInput;
 
     bool qInput;
     bool lockOnInput;
@@ -67,7 +67,7 @@ namespace SA
 
       qInput = Input.GetButton("Action2");
       aInput = Input.GetButton("Action1");
-      xInput = Input.GetButton("X");
+      useItemInput = Input.GetButton("UseItem");
 
       if (runInput)
         runTimer += delta;
@@ -85,6 +85,9 @@ namespace SA
       float move = Mathf.Abs(vertical) + Mathf.Abs(horizontal);
       stateManager.moveAmount = Mathf.Clamp01(move);
 
+      if (useItemInput)
+        runInput = false;
+
       if (runInput && runTimer > 0.5f)
       {
         stateManager.run = (stateManager.moveAmount > 0);
@@ -93,6 +96,7 @@ namespace SA
       if (!runInput && runTimer > 0 && runTimer < 0.5f)
         stateManager.roll = true;
 
+      stateManager.useItem = useItemInput;
       stateManager.attack1 = attack1Input;
       stateManager.attack2 = attack2Input;
       stateManager.action1 = qInput;
