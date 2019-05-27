@@ -13,7 +13,7 @@ namespace SA
       if (!enemyStates)
         return;
 
-      enemyStates.DoDamage(5);
+      enemyStates.DoDamage(35);
     }
   }
 }
