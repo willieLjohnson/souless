@@ -8,15 +8,34 @@ namespace SA
   {
     Animator animator;
     StateManager stateManager;
+    EnemyStates enemyStates;
+    Rigidbody rigidBody;
+
+
     public float rootMotionMultiplier;
     bool rolling;
     float rollTime;
+    float delta;
     AnimationCurve rollCurve;
 
-    public void Init(StateManager stateManager)
+    public void Init(StateManager stateManager, EnemyStates enemyStates)
     {
       this.stateManager = stateManager;
-      animator = stateManager.animator;
+      this.enemyStates = enemyStates;
+      if (stateManager != null)
+      {
+        animator = stateManager.animator;
+        rigidBody = stateManager.rigidBody;
+        rollCurve = stateManager.rollCurve;
+        delta = stateManager.delta;
+      }
+
+      if (enemyStates != null)
+      {
+        animator = enemyStates.animator;
+        rigidBody = enemyStates.rigidBody;
+        delta = enemyStates.delta;
+      }
     }
 
     public void InitForRoll()
@@ -37,43 +56,72 @@ namespace SA
 
     void OnAnimatorMove()
     {
-      if (stateManager.canMove)
+      if (stateManager == null && enemyStates == null)
         return;
 
-      stateManager.rigidBody.drag = 0;
+      if (rigidBody == null)
+        return;
+
+      if (stateManager != null)
+      {
+        if (stateManager.canMove)
+          return;
+
+        delta = stateManager.delta;
+      }
+
+      if (enemyStates != null)
+      {
+        if (enemyStates.canMove)
+          return;
+
+        delta = enemyStates.delta;
+      }
+
+      rigidBody.drag = 0;
 
       if (rootMotionMultiplier == 0)
         rootMotionMultiplier = 1;
 
+
+
       if (!rolling)
       {
-        Vector3 delta = animator.deltaPosition;
-        delta.y = 0;
-        Vector3 velocity = (delta * rootMotionMultiplier) / stateManager.delta;
-        stateManager.rigidBody.velocity = velocity;
+        Vector3 deltaPosition = animator.deltaPosition;
+        deltaPosition.y = 0;
+        Vector3 velocity = (deltaPosition * rootMotionMultiplier) / delta;
+        rigidBody.velocity = velocity;
       }
       else
       {
-        rollTime += stateManager.delta / 0.6f;
+        rollTime += delta / 0.6f;
         if (rollTime > 1)
         {
           rollTime = 1;
         }
-        float zValue = stateManager.rollCurve.Evaluate(rollTime);
+
+        if (stateManager == null)
+          return;
+
+        float zValue = rollCurve.Evaluate(rollTime);
         Vector3 zVelocity = Vector3.forward * zValue;
         Vector3 relative = transform.TransformDirection(zVelocity);
         Vector3 velocity = (relative * rootMotionMultiplier);
-        stateManager.rigidBody.velocity = velocity;
+        rigidBody.velocity = velocity;
       }
     }
 
     public void OpenDamageColliders()
     {
+      if (stateManager == null)
+        return;
       stateManager.inventoryManager.currentWeapon.weaponHook.OpenDamageColliders();
     }
 
     public void CloseDamageColliders()
     {
+      if (stateManager == null)
+        return;
       stateManager.inventoryManager.currentWeapon.weaponHook.CloseDamageColliders();
     }
   }

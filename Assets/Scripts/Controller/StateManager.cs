@@ -70,8 +70,10 @@ namespace SA
       actionManager = GetComponent<ActionManager>();
       actionManager.Init(this);
 
-      animatorHook = activeModel.AddComponent<AnimatorHook>();
-      animatorHook.Init(this);
+      animatorHook = activeModel.GetComponent<AnimatorHook>();
+      if (animatorHook == null)
+        animatorHook = activeModel.AddComponent<AnimatorHook>();
+      animatorHook.Init(this, null);
 
       gameObject.layer = 8;
       ignoreLayers = ~(1 << 9);

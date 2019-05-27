@@ -8,21 +8,38 @@ namespace SA
   {
     public float health;
     public bool isInvisible;
-    Animator animator;
+    public bool canMove;
+    public Animator animator;
     EnemyTarget enemyTarget;
-
+    AnimatorHook animatorHook;
+    public Rigidbody rigidBody;
+    public float delta;
     void Start()
     {
       animator = GetComponentInChildren<Animator>();
       enemyTarget = GetComponent<EnemyTarget>();
       enemyTarget.Init(animator);
+
+      rigidBody = GetComponent<Rigidbody>();
+
+      animatorHook = animator.GetComponent<AnimatorHook>();
+      if (animatorHook == null)
+        animatorHook = animator.gameObject.AddComponent<AnimatorHook>();
+      animatorHook.Init(null, this);
     }
 
     void Update()
     {
+      delta = Time.deltaTime;
+      canMove = animator.GetBool("can_move");
       if (isInvisible)
       {
-        isInvisible = !animator.GetBool("can_move");
+        isInvisible = !canMove;
+      }
+
+      if (canMove)
+      {
+        animator.applyRootMotion = false;
       }
     }
 
@@ -34,6 +51,8 @@ namespace SA
       health -= value;
       isInvisible = true;
       animator.Play("damage_1");
+      animator.applyRootMotion = true;
+      animator.SetBool("can_move", false);
     }
   }
 }
