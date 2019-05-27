@@ -400,6 +400,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 291743629}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &291743631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: ca83604b987b45643ae48df0446775d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 291743629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &291743632
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291743631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.34, z: 0}
 --- !u!1 &304798906
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +772,7 @@ GameObject:
   - component: {fileID: 799378423}
   - component: {fileID: 799378425}
   - component: {fileID: 799378424}
+  - component: {fileID: 799378426}
   m_Layer: 9
   m_Name: DamageCollider
   m_TagString: Untagged
@@ -800,6 +821,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.34, y: 0.18, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &799378426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799378422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f34710d984f8e1418a9237b0765777f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89652297e25cdda449526514295074aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  isInvisible: 0
 --- !u!114 &1377738877
 MonoBehaviour:
   m_ObjectHideFlags: 0
