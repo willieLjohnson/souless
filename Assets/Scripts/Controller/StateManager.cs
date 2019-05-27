@@ -103,6 +103,8 @@ namespace SA
     {
       this.delta = delta;
 
+      usingItem = animator.GetBool("interacting");
+
       DetectItemAction();
       DetectAction();
 

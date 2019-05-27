@@ -532,6 +532,7 @@ MonoBehaviour:
   action2: 0
   moveDirection: {x: 0, y: 0, z: 0}
   roll: 0
+  useItem: 0
   moveSpeed: 3.5
   runSpeed: 5.5
   rotateSpeed: 9
@@ -543,6 +544,7 @@ MonoBehaviour:
   inAction: 0
   canMove: 0
   isTwoHanded: 0
+  usingItem: 0
   lockOnTarget: {fileID: 1244655905}
   lockOnTransform: {fileID: 0}
   rollCurve:
@@ -617,6 +619,9 @@ MonoBehaviour:
     targetAnimation: 
   - input: 3
     targetAnimation: 
+  consumableItem:
+    targetAnimation: bestus
+    itemID: 
 --- !u!114 &321505090
 MonoBehaviour:
   m_ObjectHideFlags: 0
