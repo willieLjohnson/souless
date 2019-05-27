@@ -415,7 +415,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.79
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ca83604b987b45643ae48df0446775d9,
         type: 3}
@@ -486,20 +486,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 291743629}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &291743632
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291743631}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &291743633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,7 +560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321505083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.213, z: 0}
+  m_LocalPosition: {x: 0, y: 4.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 195346039}
@@ -1448,6 +1434,7 @@ MonoBehaviour:
   index: 0
   targets: []
   humanoidBones: 000000001700000018000000
+  enemyStates: {fileID: 0}
 --- !u!114 &1244655906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,6 +1649,7 @@ GameObject:
   - component: {fileID: 1377738876}
   - component: {fileID: 1377738877}
   - component: {fileID: 1377738878}
+  - component: {fileID: 1377738879}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1677,7 +1665,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377738874}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.6506728, y: 0, z: 22.44}
+  m_LocalPosition: {x: -1.6506728, y: 0, z: 13.446}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1154283852}
@@ -1718,6 +1706,7 @@ MonoBehaviour:
   index: 0
   targets: []
   humanoidBones: 
+  enemyStates: {fileID: 0}
 --- !u!54 &1377738878
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1734,6 +1723,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!136 &1377738879
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377738874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1414519362 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 1051f7c63a5f22f42a2f8c5351eccc55,

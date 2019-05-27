@@ -108,10 +108,23 @@ namespace SA
         stateManager.HandleTwoHanded();
       }
 
+      if (stateManager.lockOnTarget != null)
+      {
+        if (stateManager.lockOnTarget.enemyStates.isDead)
+        {
+          stateManager.lockOn = false;
+          stateManager.lockOnTarget = null;
+          stateManager.lockOnTransform = null;
+          cameraManager.lockOn = false;
+          cameraManager.lockOnTarget = null;
+        }
+      }
+
       if (lockOnInput)
       {
         stateManager.lockOn = !stateManager.lockOn;
-        if (!stateManager.lockOnTarget)
+
+        if (stateManager.lockOnTarget == null)
           stateManager.lockOn = false;
 
         cameraManager.lockOnTarget = stateManager.lockOnTarget;

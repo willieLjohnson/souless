@@ -24,7 +24,7 @@ namespace SA
       health = 100;
       animator = GetComponentInChildren<Animator>();
       enemyTarget = GetComponent<EnemyTarget>();
-      enemyTarget.Init(animator);
+      enemyTarget.Init(this);
 
       rigidBody = GetComponent<Rigidbody>();
 

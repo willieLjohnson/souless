@@ -10,11 +10,14 @@ namespace SA
     public List<Transform> targets = new List<Transform>();
     public List<HumanBodyBones> humanoidBones = new List<HumanBodyBones>();
 
+    public EnemyStates enemyStates;
+
     Animator animator;
 
-    public void Init(Animator animator)
+    public void Init(EnemyStates enemyStates)
     {
-      this.animator = animator;
+      this.enemyStates = enemyStates;
+      animator = enemyStates.animator;
       if (!animator.isHuman)
         return;
 
