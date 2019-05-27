@@ -272,6 +272,11 @@ namespace SA
     public void HandleTwoHanded()
     {
       animator.SetBool("two_handed", isTwoHanded);
+
+      if (isTwoHanded)
+        actionManager.UpdateActionsTwoHanded();
+      else
+        actionManager.UpdateActionsOneHanded();
     }
   }
 }

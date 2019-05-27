@@ -633,7 +633,17 @@ MonoBehaviour:
     actions:
     - input: 0
       targetAnimation: oh_attack_1
-    twoHandedActions: []
+    - input: 1
+      targetAnimation: oh_attack_2
+    - input: 2
+      targetAnimation: parry
+    - input: 3
+      targetAnimation: oh_attack_3
+    twoHandedActions:
+    - input: 0
+      targetAnimation: th_attack_1
+    - input: 1
+      targetAnimation: th_attack_2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

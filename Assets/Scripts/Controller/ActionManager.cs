@@ -14,12 +14,28 @@ namespace SA
     {
       this.stateManager = stateManager;
 
+      UpdateActionsOneHanded();
+    }
+
+    public void UpdateActionsOneHanded()
+    {
       Weapon weapon = stateManager.inventoryManager.currentWeapon;
 
       for (int i = 0; i < weapon.actions.Count; i++)
       {
         Action action = GetAction(weapon.actions[i].input);
         action.targetAnimation = weapon.actions[i].targetAnimation;
+      }
+    }
+
+    public void UpdateActionsTwoHanded()
+    {
+      Weapon weapon = stateManager.inventoryManager.currentWeapon;
+
+      for (int i = 0; i < weapon.twoHandedActions.Count; i++)
+      {
+        Action action = GetAction(weapon.twoHandedActions[i].input);
+        action.targetAnimation = weapon.twoHandedActions[i].targetAnimation;
       }
     }
 
