@@ -10,7 +10,7 @@ namespace SA
     StateManager stateManager;
     public float rootMotionMultiplier;
     bool rolling;
-    float rollTime; // TODO: Rename
+    float rollTime;
     AnimationCurve rollCurve;
 
     public void Init(StateManager stateManager)
@@ -65,6 +65,16 @@ namespace SA
         Vector3 velocity = (relative * rootMotionMultiplier);
         stateManager.rigidBody.velocity = velocity;
       }
+    }
+
+    public void OpenDamageColliders()
+    {
+      stateManager.inventoryManager.currentWeapon.weaponHook.OpenDamageColliders();
+    }
+
+    public void CloseDamageColliders()
+    {
+      stateManager.inventoryManager.currentWeapon.weaponHook.CloseDamageColliders();
     }
   }
 

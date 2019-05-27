@@ -10,7 +10,7 @@ namespace SA
     public Weapon currentWeapon;
     public void Init()
     {
-
+      currentWeapon.weaponHook.CloseDamageColliders();
     }
   }
 
@@ -20,6 +20,7 @@ namespace SA
     public List<Action> actions;
     public List<Action> twoHandedActions;
     public GameObject weaponModel;
+    public WeaponHook weaponHook;
   }
 }
 

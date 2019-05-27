@@ -670,6 +670,7 @@ MonoBehaviour:
     - input: 1
       targetAnimation: th_attack_2
     weaponModel: {fileID: 1414519362}
+    weaponHook: {fileID: 1414519364}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +772,6 @@ GameObject:
   m_Component:
   - component: {fileID: 799378423}
   - component: {fileID: 799378425}
-  - component: {fileID: 799378424}
   - component: {fileID: 799378426}
   m_Layer: 9
   m_Name: DamageCollider
@@ -794,20 +794,6 @@ Transform:
   m_Father: {fileID: 1414519363}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &799378424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799378422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fe1bf32dd2fab449a60e3c3d3a9e049, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageColliders:
-  - {fileID: 799378422}
 --- !u!65 &799378425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1296,6 +1282,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1542223159}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1414519364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414519362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe1bf32dd2fab449a60e3c3d3a9e049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColliders:
+  - {fileID: 799378422}
 --- !u!1 &1491053654
 GameObject:
   m_ObjectHideFlags: 0
