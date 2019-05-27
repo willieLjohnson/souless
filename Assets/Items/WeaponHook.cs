@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponHook : MonoBehaviour
+namespace SA
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  public class WeaponHook : MonoBehaviour
+  {
+    public GameObject[] damageColliders;
+  }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
