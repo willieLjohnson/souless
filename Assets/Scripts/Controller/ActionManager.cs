@@ -19,6 +19,7 @@ namespace SA
 
     public void UpdateActionsOneHanded()
     {
+      EmptyAllSlots();
       Weapon weapon = stateManager.inventoryManager.currentWeapon;
 
       for (int i = 0; i < weapon.actions.Count; i++)
@@ -30,12 +31,22 @@ namespace SA
 
     public void UpdateActionsTwoHanded()
     {
+      EmptyAllSlots();
       Weapon weapon = stateManager.inventoryManager.currentWeapon;
 
       for (int i = 0; i < weapon.twoHandedActions.Count; i++)
       {
         Action action = GetAction(weapon.twoHandedActions[i].input);
         action.targetAnimation = weapon.twoHandedActions[i].targetAnimation;
+      }
+    }
+
+    void EmptyAllSlots()
+    {
+      for (int i = 0; i < 4; i++)
+      {
+        Action action = GetAction((ActionInput)i);
+        action.targetAnimation = null;
       }
     }
 
