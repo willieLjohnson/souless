@@ -109,7 +109,7 @@ namespace SA
 
       DetectItemAction();
       DetectAction();
-      inventoryManager.currentWeapon.weaponModel.SetActive(!usingItem);
+      inventoryManager.rightHandWeapon.weaponModel.SetActive(!usingItem);
 
 
       if (inAction)

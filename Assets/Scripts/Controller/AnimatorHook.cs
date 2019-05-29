@@ -115,14 +115,14 @@ namespace SA
     {
       if (stateManager == null)
         return;
-      stateManager.inventoryManager.currentWeapon.weaponHook.OpenDamageColliders();
+      stateManager.inventoryManager.OpenAllDamageColliders();
     }
 
     public void CloseDamageColliders()
     {
       if (stateManager == null)
         return;
-      stateManager.inventoryManager.currentWeapon.weaponHook.CloseDamageColliders();
+      stateManager.inventoryManager.CloseAllDamageColliders();
     }
   }
 

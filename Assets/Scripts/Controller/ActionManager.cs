@@ -22,7 +22,7 @@ namespace SA
     public void UpdateActionsOneHanded()
     {
       EmptyAllSlots();
-      Weapon weapon = stateManager.inventoryManager.currentWeapon;
+      Weapon weapon = stateManager.inventoryManager.rightHandWeapon;
 
       for (int i = 0; i < weapon.actions.Count; i++)
       {
@@ -34,7 +34,7 @@ namespace SA
     public void UpdateActionsTwoHanded()
     {
       EmptyAllSlots();
-      Weapon weapon = stateManager.inventoryManager.currentWeapon;
+      Weapon weapon = stateManager.inventoryManager.rightHandWeapon;
 
       for (int i = 0; i < weapon.twoHandedActions.Count; i++)
       {
