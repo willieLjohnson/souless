@@ -8,6 +8,7 @@ namespace SA
   {
 
     public Weapon rightHandWeapon;
+    public bool hasLeftHandWeapon = true;
     public Weapon leftHandWeapon;
     public void Init()
     {
@@ -42,6 +43,19 @@ namespace SA
     public bool leftHandMirror;
     public GameObject weaponModel;
     public WeaponHook weaponHook;
+
+    public Action GetAction(List<Action> actions, ActionInput input)
+    {
+      for (int i = 0; i < actions.Count; i++)
+      {
+        if (actions[i].input == input)
+        {
+          return actions[i];
+        }
+      }
+
+      return null;
+    }
   }
 }
 
