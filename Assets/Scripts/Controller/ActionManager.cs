@@ -22,6 +22,13 @@ namespace SA
     public void UpdateActionsOneHanded()
     {
       EmptyAllSlots();
+
+      if (stateManager.inventoryManager.hasLeftHandWeapon)
+      {
+        UpdateLeftHandActions();
+        return;
+      }
+
       Weapon weapon = stateManager.inventoryManager.rightHandWeapon;
 
       for (int i = 0; i < weapon.actions.Count; i++)
@@ -29,6 +36,23 @@ namespace SA
         Action action = GetAction(weapon.actions[i].input);
         action.targetAnimation = weapon.actions[i].targetAnimation;
       }
+    }
+
+    public void UpdateLeftHandActions()
+    {
+      // EmptyAllSlots();
+      Weapon rightWeapon = stateManager.inventoryManager.rightHandWeapon;
+      Weapon leftWeapon = stateManager.inventoryManager.leftHandWeapon;
+
+      Action attack1 = GetAction(ActionInput.attack1);
+      Action attack2 = GetAction(ActionInput.attack2);
+      attack1.targetAnimation = rightWeapon.GetAction(rightWeapon.actions, ActionInput.attack1).targetAnimation;
+      attack2.targetAnimation = rightWeapon.GetAction(rightWeapon.actions, ActionInput.attack2).targetAnimation;
+
+      Action action1 = GetAction(ActionInput.action1);
+      Action action2 = GetAction(ActionInput.action2);
+      action1.targetAnimation = leftWeapon.GetAction(leftWeapon.actions, ActionInput.action1).targetAnimation;
+      action2.targetAnimation = leftWeapon.GetAction(leftWeapon.actions, ActionInput.action2).targetAnimation;
     }
 
     public void UpdateActionsTwoHanded()
