@@ -739,14 +739,17 @@ MonoBehaviour:
       targetAnimation: oh_attack_1
     - input: 1
       targetAnimation: oh_attack_2
-    - input: 2
-      targetAnimation: oh_attack_3
     twoHandedActions: []
     leftHandMirror: 0
     weaponModel: {fileID: 1414519362}
     weaponHook: {fileID: 1414519364}
+  hasLeftHandWeapon: 1
   leftHandWeapon:
-    actions: []
+    actions:
+    - input: 2
+      targetAnimation: oh_attack_1
+    - input: 1
+      targetAnimation: oh_attack_2
     twoHandedActions: []
     leftHandMirror: 0
     weaponModel: {fileID: 1324717887}
